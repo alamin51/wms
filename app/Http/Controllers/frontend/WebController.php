@@ -55,7 +55,8 @@ class WebController extends Controller
     }
     public function profile()
     {
-        $bookings = Booking::where("user_id", auth()->user()->id)->get();
+        $bookings = Booking::where("user_id", auth()->user()->id)->with('bookingDetails')->get();
+
         return view('frontend.pages.auth.userprofile',compact("bookings"));
     }
      public function edit($id){

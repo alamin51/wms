@@ -192,17 +192,20 @@
                     <th scope="col">Package Name</th>
                     <th scope="col">booking_from</th>
                     <th scope="col">booking_to</th>
+                    <th scope="col">Total Cost</th>
                     <th scope="col">status</th>
                     <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
                 @foreach($bookings as $key=>$data)
+                {{-- @dd($data); --}}
                 <tr>
                     <td>{{$key + 1 }}</td>
                     <td> {{$data->package->name}}</td>
                     <td> {{$data->booking_from}}</td>
                     <td> {{$data->booking_to}}</td>
+                    <td> {{$data->bookingDetails->sum('package_price') + $data->package->price}}</td>
                     <td> {{$data->status}}</td>
                     <td>
                         <a href="{{route('frontend.booking.delete',$data->id)}}" class="btn btn-danger">Cancle</a>
