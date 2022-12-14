@@ -144,6 +144,7 @@ route::get('/registration',[LoginController::class,'registration'])->name('user.
 route::post('/do-registration',[LoginController::class,'store'])->name('user.do.registration');
 
 Route::get('/profile',[WebController::class,'profile'])->name('user.profile');
+Route::get('/profile-view/{id}',[WebController::class,'bookingDetails'])->name('user.bookingDetails');
 Route::get('/profile-edit/{id}',[WebController::class,'edit'])->name('user.profile.edit');
 Route::put('/profile-update/{id}',[WebController::class,'updateProfile'])->name('profile.update');
 
@@ -154,5 +155,3 @@ route::post('/generated-report',[ReportController::class,'generateReport'])->nam
 
 
 route::get('/contact-us',[ReportController::class,'contact'])->name('contact.us');
-
-

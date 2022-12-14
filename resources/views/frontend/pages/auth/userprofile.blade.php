@@ -145,7 +145,9 @@
 
                         <ul class="nav nav-tabs" id="myTab" role="tablist">
                             <li class="nav-item">
-                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" style="background-color:black;color:white" aria-selected="true">About</a>
+                                <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab"
+                                    aria-controls="home" style="background-color:black;color:white"
+                                    aria-selected="true">About</a>
                             </li>
                         </ul>
 
@@ -202,8 +204,10 @@
                     <td> {{$data->booking_from}}</td>
                     <td> {{$data->booking_to}}</td>
                     <td> {{$data->status}}</td>
-                    <td> 
+                    <td>
                         <a href="{{route('frontend.booking.delete',$data->id)}}" class="btn btn-danger">Cancle</a>
+                        <span><a href="{{ route('user.bookingDetails',$data->id) }}"
+                                class="btn btn-primary">View</a></span>
                     </td>
                 </tr>
                 @endforeach

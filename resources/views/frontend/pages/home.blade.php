@@ -13,7 +13,7 @@
 						<div class="display-tc animate-box" data-animate-effect="fadeIn">
 							<h1>Wedding Management System</h1>
 							<h2>Be Happy with lots of Blessing.. </h2>
-							
+
 						</div>
 					</div>
 				</div>
@@ -59,7 +59,7 @@
             <div class="row">
                 <div class="col-md-8 col-md-offset-2 text-center fh5co-heading animate-box">
                     <span>Our service</span>
-                    <h2>Wedding Events</h2>
+                    <h2>Wedding Packages</h2>
                 </div>
             </div>
             <div class="row row-bottom-padded-md">
@@ -90,7 +90,7 @@
             </div>
         </div>
 
-       
+
 
 
 
