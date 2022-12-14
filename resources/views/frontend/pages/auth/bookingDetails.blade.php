@@ -20,7 +20,6 @@
                         <td> {{$data->service_name}}</td>
                         <td> {{$data->booking_id}}</td>
                         <td> {{$data->package_price}} BDT</td>
-
                     </tr>
                     @endforeach
                 </tbody>
