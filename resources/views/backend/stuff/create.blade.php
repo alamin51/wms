@@ -1,9 +1,9 @@
-<!-- @extends('backend.master')
+@extends('backend.master')
 
 @section('content')
+ 
 
-
-
+<h3>Stuff Information</h3>
 <form action="{{route('stuff.create.table.store')}}" method="POST" enctype="multipart/form-data">
 
     @csrf 
@@ -31,11 +31,6 @@
 
   <button type="submit" class="btn btn-success">Submit</button>
  
- 
-  <!-- <div class="form-group">
-    <label for="description">Description</label>
-    <input class="text" name="description" class="form-control" id="description" placeholder="Enter your Description">
-  </div> -->
-</form>
+ </form>
 
-@endsection -->
+@endsection 

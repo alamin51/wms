@@ -11,9 +11,8 @@
 <div id="main-menu" class="main-menu collapse navbar-collapse">
 <ul class="nav navbar-nav">
 <li class="active">
-<a href="index.html"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
+<a href="{{route('admin')}}"> <i class="menu-icon fa fa-dashboard"></i>Dashboard </a>
 </li>
-<h3 class="menu-title">Elements</h3>
 
 
 <li>
@@ -38,6 +37,10 @@
 
 <li>
 <a href="{{route('user.create.table')}}" > <i class="menu-icon fa fa-th"></i>User</a>
+</li>
+
+<li>
+<a href="{{route('stuff.create.table')}}" > <i class="menu-icon fa fa-th"></i>Stuff</a>
 </li>
 
 <li>

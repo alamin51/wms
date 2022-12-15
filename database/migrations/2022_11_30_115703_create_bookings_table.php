@@ -19,6 +19,7 @@ return new class extends Migration
             $table->foreignId('package_id')->constrained("packages");
             $table->date('booking_from');
             $table->date('booking_to');
+            $table->text("address");
             $table->string('status')->default('pending');
             $table->timestamps();
         });

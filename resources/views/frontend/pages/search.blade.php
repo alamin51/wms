@@ -21,6 +21,8 @@
                             <h4 class="card-title">{{$data->event_name}}</h4>
                             <h4 class="card-title">{{$data->description}}</h4>
                             <p class="text-muted">Price:{{$data->price}}.BDT</p><a class="btn btn-outline-primary btn-sm" href="#" data-abc="true"></a>
+                            <a href="{{route('frontend.booking.form',$data->id)}}" class="btn btn-primary"
+                                    style="min-height: 10px !important;">Booking Now</a>
                         </div>
                     </div>
                 </div>

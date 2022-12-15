@@ -1,4 +1,5 @@
-<!-- @extends('backend.master')
+
+@extends('backend.master')
 
 @section('content')
 
@@ -31,7 +32,6 @@
       <td>{{$data->s_phone}}</td>
       <td>{{$data->s_address}}</td>
       <td>
-      <a href="#"><button type="button" class="btn btn-warning">View</button></a>
       <a href="{{route('stuff.create.edit',$data->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>
       <a href="{{route('stuff.create.delete',$data->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
       </td>
@@ -41,4 +41,4 @@
   </tbody>
 </table>
 
-@endsection -->
+@endsection

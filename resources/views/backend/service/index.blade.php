@@ -28,7 +28,7 @@
       <td>{{$data->price}}</td>
       <td>{{$data->status}}</td>
       <td>
-      <button type="button" class="btn btn-warning">View</button>
+    
       <a href="{{route('service.create.edit',$data->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>
       <a href="{{route('service.create.delete',$data->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
       </td>

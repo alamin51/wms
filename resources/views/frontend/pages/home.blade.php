@@ -76,8 +76,7 @@
                                 <h2>{{$data->name}}</h2>
                                 <p>{{$data->description}}</p>
                                 <p>{{$data->price}}.BDT</p>
-                                <a href="{{route('frontend.booking.form',$data->id)}}" class="btn btn-primary"
-                                    style="min-height: 10px !important;">Booking Now</a>
+                                <a href="{{route('frontend.booking.form',$data->id)}}" class="btn btn-primary"style="min-height: 10px !important;">Booking Now</a>
 
                             </div>
 

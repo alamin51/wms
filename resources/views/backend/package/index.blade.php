@@ -33,7 +33,7 @@
       <img src="{{url('/upload/'.$data->image)}}" width="40" height="40" alt="package image">
       </td>
     <td>
-      <button type="button" class="btn btn-warning">View</button>
+    
       <a href="{{route('package.create.edit',$data->id)}}"><button type="button" class="btn btn-success">Edit</button></a>
       <a href="{{route('package.create.delete',$data->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
     </td>

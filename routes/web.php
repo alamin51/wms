@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\backend\BookingController;
 use App\Http\Controllers\backend\CustomerController;
+use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\EventController;
 use App\Http\Controllers\backend\PackageController;
 use App\Http\Controllers\backend\PaymentController;
@@ -24,10 +25,13 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
+Route::group(["prefix"=>"admin"], function(){
+    
+route::get('/',[DashboardController::class,'dashboard'])->name('admin');
 
-Route::get('/admin', function () {
-    return view('backend.master');
-});
+
+
+
 //For Backend
 //Role
 route::get('/create',[RoleController::class,'create'])->name('role.create');
@@ -78,14 +82,14 @@ route::get('/booking-reject/{id}',[BookingController::class,'reject'])->name('bo
 
 
 //for Stuff
-// route::get('/create/stuff',[StuffController::class,'create'])->name('stuff.create');
-// route::get('/stuff-create/table',[StuffController::class,'table'])->name('stuff.create.table');
-// route::post('/stuff-create/table/post',[StuffController::class,'store'])->name('stuff.create.table.store');
-// //route::get('/stuff-view/{id}',[StuffController::class,'view'])->name('stuff.create.view');
-// route::get('/stuff-edit/{id}',[StuffController::class,'edit'])->name('stuff.create.edit');
-// route::get('/stuff-update/{id}',[StuffController::class,'updateForm'])->name('stuff.create.update');
-// route::put('/stuff-submit/{id}',[StuffController::class,'update'])->name('stuff.create.do.update');
-// route::get('/stuff-delete/{id}',[StuffController::class,'delete'])->name('stuff.create.delete');
+route::get('/create/stuff',[StuffController::class,'create'])->name('stuff.create');
+route::get('/stuff-create/table',[StuffController::class,'table'])->name('stuff.create.table');
+route::post('/stuff-create/table/post',[StuffController::class,'store'])->name('stuff.create.table.store');
+//route::get('/stuff-view/{id}',[StuffController::class,'view'])->name('stuff.create.view');
+route::get('/stuff-edit/{id}',[StuffController::class,'edit'])->name('stuff.create.edit');
+route::get('/stuff-update/{id}',[StuffController::class,'updateForm'])->name('stuff.create.update');
+route::put('/stuff-submit/{id}',[StuffController::class,'update'])->name('stuff.create.do.update');
+route::get('/stuff-delete/{id}',[StuffController::class,'delete'])->name('stuff.create.delete');
 
 
 //for Payment
@@ -125,18 +129,21 @@ route::put('/user-submit/{id}',[UserController::class,'update'])->name('user.cre
 route::get('/user-delete/{id}',[UserController::class,'delete'])->name('user.create.delete');
 
 
+});
 
 
 
 //for FRONTEND
-route::get('/',[WebController::class,'index'])->name('home');
-route::get('/book-a-package/{id}',[WebController::class,'book'])->name('frontend.booking.form');
-route::post('/book-a-package-submit/{id}',[WebController::class,'submit'])->name('frontend.booking.submit');
+
+
+Route::get('/',[WebController::class,'index'])->name('home');
+route::get('/book-a-package/{id}',[WebController::class,'book'])->name('frontend.booking.form')->middleware(["auth"]);
+route::post('/book-a-package-submit/{id}',[WebController::class,'submit'])->name('frontend.booking.submit')->middleware(["auth"]);
 route::get('/delete-booking/{id}',[WebController::class,'deleteBooking'])->name('frontend.booking.delete');
 route::get('/search',[WebController::class,'search'])->name('search');
 
 //for LOGIN
-route::get('/login',[LoginController::class,'login'])->name('admin.login');
+route::get('/login',[LoginController::class,'login'])->name('login');
 Route::post('/dologin',[LoginController::class,'dologin'])->name('admin.dologin');
 route::get('/user/logout',[LoginController::class,'logout'])->name('user.logout');
 

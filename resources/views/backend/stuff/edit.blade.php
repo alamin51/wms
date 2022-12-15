@@ -1,4 +1,4 @@
-<!-- @extends('backend.master')
+ @extends('backend.master')
 
 @section('content')
 
@@ -34,11 +34,7 @@
 
   <button type="submit" class="btn btn-success">Update</button>
  
- 
-  <!-- <div class="form-group">
-    <label for="description">Description</label>
-    <input class="text" name="description" class="form-control" id="description" placeholder="Enter your Description">
-  </div> -->
+
 </form>
 
-@endsection -->
+@endsection

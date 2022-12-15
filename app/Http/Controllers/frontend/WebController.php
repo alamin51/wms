@@ -17,6 +17,7 @@ class WebController extends Controller
 
         $packages = Package::all();
         return view('frontend.pages.home',compact("packages"));
+        // return "Hello";
     }
     public function book($id){
         $package = Package::find($id);
@@ -33,6 +34,7 @@ class WebController extends Controller
         $booking=Booking::create([
             'user_id'=>auth()->user()->id,
             'package_id'=>$package->id,
+            "address"=>$request->address,
             'booking_from'=>$request->from_date,
             'booking_to'=>$request->to_date
         ]);

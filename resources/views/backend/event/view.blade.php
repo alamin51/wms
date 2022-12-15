@@ -105,7 +105,7 @@
             top: 20px
         }
     </style>
-    <h1>Single Product View</h1>
+    <h1>Single Event View</h1>
 
     <div class="container pt-5">
         <div class="row justify-content-center">

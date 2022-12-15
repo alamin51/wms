@@ -27,7 +27,6 @@
       <td>{{$data->Description}}</td>
       <td>{{$data->status}}</td>
       <td>
-      <a href="#"><button type="button" class="btn btn-warning">View</button></a>
       <a href="{{route('role.create.edit',$data->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>
       <a href="{{route('role.create.delete',$data->id)}}"><button type="button" class="btn btn-danger">Delete</button></a>
       </td>

@@ -23,7 +23,7 @@
             <div class="col-md-7 text-right menu-1">
 
                 <ul>
-                    <li class="active"><a href="index.html">Home</a></li>
+                    <li class="active"><a href="{{route('home')}}">Home</a></li>
                     <li><a href="about.html">Story</a></li>
                     <li class="has-dropdown">
                     <a href="services.html">Services</a>
@@ -38,7 +38,7 @@
                     
                     @else
 
-                    <li><a href="{{route('admin.login')}}">Login</a></li>
+                    <li><a href="{{route('login')}}">Login</a></li>
                     @endauth
                 </ul>
             </div>
