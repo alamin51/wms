@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\frontend;
 
+use notify;
+use App\Models\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
@@ -17,10 +18,17 @@ class LoginController extends Controller
         $variable=$request->only('email',"password");
         
         if(Auth::attempt($variable)){
+            notify()->success("Login Success");
+            if(auth()->user()->role=='admin'){
+                
+                return redirect()->route('admin');
+            }
             return redirect()->route('home');
         }
-        else
-        return redirect()->back();
+        else{
+            notify()->error("Login Failed");
+            return redirect()->back();
+        }
     }
     public function registration(){
         return view('frontend.pages.auth.registration');
@@ -28,7 +36,10 @@ class LoginController extends Controller
 
     public function logout(){
         Auth::logout();
-        return redirect()->back();
+
+        notify()->success('Logout Successfully.');
+
+        return redirect()->route('home');
     }
     
     
@@ -62,6 +73,7 @@ class LoginController extends Controller
 
 
         ]);
+        notify()->success('Registration Successfully.');
         return redirect()->route('login');
     }
 }

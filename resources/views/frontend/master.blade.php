@@ -39,9 +39,7 @@
     <meta name="twitter:image" content="" />
     <meta name="twitter:url" content="" />
     <meta name="twitter:card" content="" />
-
-    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet'
-        type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Work+Sans:400,300,600,400italic,700' rel='stylesheet' type='text/css'>
     <link href="https://fonts.googleapis.com/css?family=Sacramento" rel="stylesheet">
 
     <!-- Animate.css -->
@@ -67,64 +65,63 @@
     <!--[if lt IE 9]>
 	<script src="js/respond.min.js"></script>
 	<![endif]-->
-
+    @notifyCss
 </head>
 
 <body>
-            @include('frontend.fixed.navbar')
+    @include('frontend.fixed.navbar')
 
 
-			<main style="margin-top: 105px">
-                @yield('content')
-            </main>
+    <main style="margin-top: 105px">
+        <x:notify-messages />
+        @yield('content')
+    </main>
 
-			@include('frontend.fixed.footer')
+    @include('frontend.fixed.footer')
 
 
-            <!-- jQuery -->
-            <script src="{{('/frontend/js/jquery.min.js')}}"></script>
-            <!-- jQuery Easing -->
-            <script src="{{('/frontend/js/jquery.easing.1.3.js')}}"></script>
-            <!-- Bootstrap -->
-            <script src="{{('/frontend/js/bootstrap.min.js')}}"></script>
-            <!-- Waypoints -->
-            <script src="{{('/frontend/js/jquery.waypoints.min.js')}}"></script>
-            <!-- Carousel -->
-            <script src="{{('/frontend/js/owl.carousel.min.js')}}"></script>
-            <!-- countTo -->
-            <script src="{{('/frontend/js/jquery.countTo.js')}}"></script>
+    <!-- jQuery -->
+    <script src="{{('/frontend/js/jquery.min.js')}}"></script>
+    <!-- jQuery Easing -->
+    <script src="{{('/frontend/js/jquery.easing.1.3.js')}}"></script>
+    <!-- Bootstrap -->
+    <script src="{{('/frontend/js/bootstrap.min.js')}}"></script>
+    <!-- Waypoints -->
+    <script src="{{('/frontend/js/jquery.waypoints.min.js')}}"></script>
+    <!-- Carousel -->
+    <script src="{{('/frontend/js/owl.carousel.min.js')}}"></script>
+    <!-- countTo -->
+    <script src="{{('/frontend/js/jquery.countTo.js')}}"></script>
+    <!-- Stellar -->
+    <script src="{{('/frontend/js/jquery.stellar.min.js')}}"></script>
+    <!-- Magnific Popup -->
+    <script src="{{('/frontend/js/jquery.magnific-popup.min.js')}}"></script>
+    <script src="{{('/frontend/js/magnific-popup-options.js')}}"></script>
 
-            <!-- Stellar -->
-            <script src="{{('/frontend/js/jquery.stellar.min.js')}}"></script>
-            <!-- Magnific Popup -->
-            <script src="{{('/frontend/js/jquery.magnific-popup.min.js')}}"></script>
-            <script src="{{('/frontend/js/magnific-popup-options.js')}}"></script>
+    <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
+    <script src="{{('/frontend/js/simplyCountdown.js')}}"></script>
+    <!-- Main -->
+    <script src="{{('/frontend/js/main.js')}}"></script>
 
-            <!-- // <script src="https://cdnjs.cloudflare.com/ajax/libs/prism/0.0.1/prism.min.js"></script> -->
-            <script src="{{('/frontend/js/simplyCountdown.js')}}"></script>
-            <!-- Main -->
-            <script src="{{('/frontend/js/main.js')}}"></script>
+    <script>
+        var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
 
-            <script>
-                var d = new Date(new Date().getTime() + 200 * 120 * 120 * 2000);
+        // default example
+        simplyCountdown('.simply-countdown-one', {
+            year: d.getFullYear(),
+            month: d.getMonth() + 1,
+            day: d.getDate()
+        });
 
-                // default example
-                simplyCountdown('.simply-countdown-one', {
-                    year: d.getFullYear(),
-                    month: d.getMonth() + 1,
-                    day: d.getDate()
-                });
-
-                //jQuery example
-                $('#simply-countdown-losange').simplyCountdown({
-                    year: d.getFullYear(),
-                    month: d.getMonth() + 1,
-                    day: d.getDate(),
-                    enableUtc: false
-                });
-
-            </script>
-
+        //jQuery example
+        $('#simply-countdown-losange').simplyCountdown({
+            year: d.getFullYear(),
+            month: d.getMonth() + 1,
+            day: d.getDate(),
+            enableUtc: false
+        });
+    </script>
+    @notifyJs
 </body>
 
 </html>

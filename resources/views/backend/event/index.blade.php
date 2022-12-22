@@ -46,5 +46,6 @@
     
   </tbody>
 </table>
+{{$events->links()}}
 
 @endsection

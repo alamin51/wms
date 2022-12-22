@@ -208,15 +208,18 @@
                     <td> {{$data->bookingDetails->sum('package_price') + $data->package->price}}</td>
                     <td> {{$data->status}}</td>
                     <td>
-                        <a href="{{route('frontend.booking.delete',$data->id)}}" class="btn btn-danger">Cancle</a>
                         <span><a href="{{ route('user.bookingDetails',$data->id) }}"
                                 class="btn btn-primary">View</a></span>
+                                <span><a href="{{route('booking.status',$data->id)}}"
+                                class="btn btn-danger">cancel</a></span>
                     </td>
                 </tr>
                 @endforeach
             </tbody>
         </table>
+
 </div>
+
 </form>
 </div>
 

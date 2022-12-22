@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('service_name')->nullable();
             $table->string('description');
             $table->string('price');
+            $table->string('image');
             $table->string('status')->default('active');
             $table->timestamps();
         });

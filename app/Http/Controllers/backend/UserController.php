@@ -74,5 +74,8 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function profile(){
+        return view('backend.user.profile');
+    }
 
 }

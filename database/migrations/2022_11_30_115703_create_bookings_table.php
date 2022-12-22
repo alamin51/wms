@@ -20,6 +20,9 @@ return new class extends Migration
             $table->date('booking_from');
             $table->date('booking_to');
             $table->text("address");
+            $table->text("venue");
+            $table->text("guest");
+            $table->text("food_Item")->nullable();
             $table->string('status')->default('pending');
             $table->timestamps();
         });

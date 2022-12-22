@@ -8,9 +8,9 @@
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">#</th>
-                        <th scope="col">Service Name</th>
+                        <th scope="col">Service ID</th>
                         <th scope="col">Booking Id</th>
-                        <th scope="col">Price</th>
+                        <th scope="col">package_Price</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -19,8 +19,9 @@
                         <td>{{$key + 1 }}</td>
                         <td> {{$data->service_name}}</td>
                         <td> {{$data->booking_id}}</td>
-                        <td> {{$data->package_price}} BDT</td>
+                        <td> {{$data->package_price}} .BDT</td>
                     </tr>
+                    
                     @endforeach
                 </tbody>
             </table>

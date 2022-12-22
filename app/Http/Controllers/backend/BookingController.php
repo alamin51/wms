@@ -67,7 +67,8 @@ class BookingController extends Controller
             'package_id'=>'required',
             'booking_from'=>'required',
             'booking_to'=>'required',
- 
+            'guest'=>'required',
+            'food_item'=>'required',
         ]);
 
         Booking::create([

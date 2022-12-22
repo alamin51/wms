@@ -5,8 +5,9 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>login</title>
+  <title>Login-Form</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  @notifyCss
 </head>
 
 <body>
@@ -23,6 +24,7 @@
     <p class="alert alert -success">{{session()->get('message')}}</p>
     @endif
 
+    <x:notify-messages />
     <div class="card mx-4 mx-md-5 shadow-5-strong" style="
         margin-top: -100px;
         background: hsla(0, 0%, 100%, 0.8);
@@ -37,7 +39,7 @@
             <form action="{{route('admin.dologin')}}" method="post">
 
               @csrf
-              
+
               <div class="form-outline mb-4">
                 <input type="email" id="form3Example3" class="form-control" name="email" />
                 <label class="form-label" for="form3Example3">Email address</label>
@@ -56,6 +58,7 @@
     </div>
   </section>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"></script>
+  @notifyJs
 </body>
 
 </html>

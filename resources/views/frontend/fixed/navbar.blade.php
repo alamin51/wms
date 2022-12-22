@@ -24,15 +24,14 @@
 
                 <ul>
                     <li class="active"><a href="{{route('home')}}">Home</a></li>
-                    <li><a href="about.html">Story</a></li>
-                    <li class="has-dropdown">
-                    <a href="services.html">Services</a>
-                    <li><a href="{{route('contact.us')}}">Contact Us</a></li>
-
-                    </li>
+                   
+                    <li><a href="{{route('frontend.package')}}">Package</a></li>
+                    <li><a href="{{route('frontend.service')}}">Service</a></li>         
+                    
+                    <li><a href="{{route('contactus')}}">Contact Us</a></li>
                     @auth
                     <li>
-                    <li><a href="{{route('user.profile')}}">profile ({{auth()->user()->name}})</a></li>
+                    <li><a href="{{route('user.profile')}}">profile | ({{auth()->user()->name}})</a></li>
                     </li>
                     <li><a href="{{route('user.logout')}}">Logout</a></li>
                     

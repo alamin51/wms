@@ -13,6 +13,7 @@
       <th scope="col">service_name</th>
       <th scope="col">description</th>
       <th scope="col">price</th>
+      <th scope="col">Image</th>
       <th scope="col">status</th>
       <th scope="col">Action</th>
 
@@ -26,7 +27,11 @@
       <td>{{$data->service_name}}</td>
       <td>{{$data->description}}</td>
       <td>{{$data->price}}</td>
+      <td>
+      <img src="{{url('/upload/'.$data->image)}}" width="40" height="40" alt="service image">
+      </td>
       <td>{{$data->status}}</td>
+
       <td>
     
       <a href="{{route('service.create.edit',$data->id)}}"><button type="button" class="btn btn-primary">Edit</button></a>

@@ -12,7 +12,7 @@ class PackageController extends Controller
         return view('backend.package.create');
     }
     public function table(){
-        $packages=Package::all();
+        $packages=Package::paginate(3);
         return view('backend.package.index',compact('packages'));
     }
     public function edit($id){
@@ -38,8 +38,7 @@ class PackageController extends Controller
             'description'=>$request->description,
             'service_id'=>$request->service_id,
             'price'=>$request->price,
-            'slug'=>$request->slug,
-            'slug'=>$request->image,
+            'image'=>$package->image,
          
             
         ]);
@@ -48,6 +47,8 @@ class PackageController extends Controller
 
     
     public function store(Request $request){
+
+        
         $request->validate([
             'name'=>'required',
             'description'=>'required',

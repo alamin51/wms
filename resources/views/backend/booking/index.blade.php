@@ -30,6 +30,7 @@
       <td>{{$data->booking_from}}</td>
       <td>{{$data->booking_to}}</td>
       <td>{{$data->status}}</td>
+      
       <td>
       
       <a href="{{route('booking.approve',$data->id)}}" class="btn btn-success">Approve</a>

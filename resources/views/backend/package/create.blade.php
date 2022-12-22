@@ -9,7 +9,7 @@
 @csrf
 <h2>Package Form</h2>
 <div class="form-group">
-  <label for="name">Name</label>
+  <label for="name">package Name</label>
   <input type="text" name="name" class="form-control" id="name" placeholder="Enter your name">
 </div> 
 

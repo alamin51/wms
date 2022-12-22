@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('stuffs', function (Blueprint $table) {
             $table->id();
             $table->string('s_name')->unique();
-            $table->string('s_image')->nullable();
+            $table->string('s_image')->unique();
             $table->string('s_phone')->unique();
             $table->string('s_address')->nullable();
             $table->timestamps();

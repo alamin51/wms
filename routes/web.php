@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\backend\BookingController;
+use App\Http\Controllers\backend\ContactController;
 use App\Http\Controllers\backend\CustomerController;
 use App\Http\Controllers\backend\DashboardController;
 use App\Http\Controllers\backend\EventController;
@@ -11,6 +12,7 @@ use App\Http\Controllers\backend\RoleController;
 use App\Http\Controllers\backend\ServiceController;
 use App\Http\Controllers\backend\StuffController;
 use App\Http\Controllers\backend\UserController;
+use App\Http\Controllers\frontend\ContactController as FrontendContactController;
 use App\Http\Controllers\frontend\LoginController;
 use App\Http\Controllers\frontend\WebController;
 use Illuminate\Support\Facades\Route;
@@ -25,33 +27,23 @@ use Illuminate\Support\Facades\Route;
 | contains the "web" middleware group. Now create something great!
 |
 */
-Route::group(["prefix"=>"admin"], function(){
+Route::group(["middleware"=>["auth","checkAdmin"],"prefix"=>"admin"], function(){
     
 route::get('/',[DashboardController::class,'dashboard'])->name('admin');
 
-
+Route::get('admin-profile',[UserController::class,'profile'])->name('backend.user.profile');
 
 
 //For Backend
 //Role
-route::get('/create',[RoleController::class,'create'])->name('role.create');
-route::get('/create/table',[RoleController::class,'table'])->name('role.create.table');
-route::post('/create/table/post',[RoleController::class,'store'])->name('role.create.table.store');
-route::get('/role-edit/{id}',[RoleController::class,'edit'])->name('role.create.edit');
-route::get('/role-update/{id}',[RoleController::class,'updateForm'])->name('role.create.update');
-route::put('/role-submit/{id}',[RoleController::class,'update'])->name('role.create.do.update');
-route::get('/role-delete/{id}',[RoleController::class,'delete'])->name('role.create.delete');
+// route::get('/create',[RoleController::class,'create'])->name('role.create');
+// route::get('/create/table',[RoleController::class,'table'])->name('role.create.table');
+// route::post('/create/table/post',[RoleController::class,'store'])->name('role.create.table.store');
+// route::get('/role-edit/{id}',[RoleController::class,'edit'])->name('role.create.edit');
+// route::get('/role-update/{id}',[RoleController::class,'updateForm'])->name('role.create.update');
+// route::put('/role-submit/{id}',[RoleController::class,'update'])->name('role.create.do.update');
+// route::get('/role-delete/{id}',[RoleController::class,'delete'])->name('role.create.delete');
 
-
-//for Customer
-// route::get('/create/customer',[CustomerController::class,'create'])->name('customer.create');
-// route::get('/customer-create/table',[CustomerController::class,'table'])->name('customer.create.table');
-// route::post('/customer-create/table/post',[CustomerController::class,'store'])->name('customer.create.table.store');
-// route::get('/customer-view/{id}',[CustomerController::class,'view'])->name('customer.create.view');
-// route::get('/customer-edit/{id}',[CustomerController::class,'edit'])->name('customer.create.edit');
-// route::get('/customer-update/{id}',[CustomerController::class,'updateForm'])->name('customer.create.update');
-// route::put('/customer-submit/{id}',[CustomerController::class,'update'])->name('customer.create.do.update');
-// route::get('/customer-delete/{id}',[CustomerController::class,'delete'])->name('customer.create.delete');
 
 
 //for Event
@@ -65,7 +57,6 @@ route::put('/event-submit/{id}',[EventController::class,'update'])->name('event.
 route::get('/event-delete/{id}',[EventController::class,'delete'])->name('event.create.delete');
 
 
-
 //for Booking
 route::get('/create/booking',[BookingController::class,'create'])->name('booking.create');
 route::get('/booking-create/table',[BookingController::class,'table'])->name('booking.create.table');
@@ -74,18 +65,14 @@ route::get('/booking-edit/{id}',[BookingController::class,'edit'])->name('bookin
 route::get('/booking-update/{id}',[BookingController::class,'updateForm'])->name('booking.create.update');
 route::put('/booking-edit/{id}',[BookingController::class,'update'])->name('booking.create.do.update');
 route::get('/booking-delete/{id}',[BookingController::class,'delete'])->name('booking.create.delete');
-
 route::get('/booking-approve/{id}',[BookingController::class,'approve'])->name('booking.approve');
 route::get('/booking-reject/{id}',[BookingController::class,'reject'])->name('booking.reject');
-
-
 
 
 //for Stuff
 route::get('/create/stuff',[StuffController::class,'create'])->name('stuff.create');
 route::get('/stuff-create/table',[StuffController::class,'table'])->name('stuff.create.table');
 route::post('/stuff-create/table/post',[StuffController::class,'store'])->name('stuff.create.table.store');
-//route::get('/stuff-view/{id}',[StuffController::class,'view'])->name('stuff.create.view');
 route::get('/stuff-edit/{id}',[StuffController::class,'edit'])->name('stuff.create.edit');
 route::get('/stuff-update/{id}',[StuffController::class,'updateForm'])->name('stuff.create.update');
 route::put('/stuff-submit/{id}',[StuffController::class,'update'])->name('stuff.create.do.update');
@@ -104,9 +91,27 @@ route::get('/package-create/table',[PackageController::class,'table'])->name('pa
 route::post('/package-create/table/post',[PackageController::class,'store'])->name('package.create.table.store');
 route::get('/package-edit{id}',[PackageController::class,'edit'])->name('package.create.edit');
 route::post('/package-update{id}',[PackageController::class,'updateForm'])->name('package.create.update');
-route::post('/package-create/edit{id}',[PackageController::class,'updateForm'])->name('package.create.do.update');
+route::put('/package-create/edit/{id}',[PackageController::class,'update'])->name('package.create.do.update');
 route::get('/package-delete/{id}',[PackageController::class,'delete'])->name('package.create.delete');
 
+
+
+
+// Services Dropdown
+//Food
+// Route::get("/food/list",[ServiceController::class,'foodList'])->name("service.food.list");
+// Route::get("/food/create",[ServiceController::class,'foodCreate'])->name("service.food.create");
+// Route::post("/food/store",[ServiceController::class,'foodStore'])->name("service.food.store");
+
+// //Decoration Dropdown
+// Route::get("/decoration/list",[ServiceController::class,'decorationList'])->name("service.decoration.list");
+// Route::get("/decoration/create",[ServiceController::class,'decorationCreate'])->name("service.decoration.create");
+// Route::post("/decoration/store",[ServiceController::class,'decorationStore'])->name("service.decoration.store");
+
+// //Photography
+// Route::get("/photography/list",[ServiceController::class,'photographyList'])->name("service.photography.list");
+// Route::get("/photography/create",[ServiceController::class,'photographyCreate'])->name("service.photography.create");
+// Route::post("/photography/store",[ServiceController::class,'photographyStore'])->name("service.photography.store");
 
 // for Service
 route::get('/create/service',[ServiceController::class,'create'])->name('service.create');
@@ -128,13 +133,10 @@ route::post('/user-update{id}',[UserController::class,'updateForm'])->name('user
 route::put('/user-submit/{id}',[UserController::class,'update'])->name('user.create.do.update');
 route::get('/user-delete/{id}',[UserController::class,'delete'])->name('user.create.delete');
 
-
+    
 });
 
-
-
-//for FRONTEND
-
+//for FRONTEND Start
 
 Route::get('/',[WebController::class,'index'])->name('home');
 route::get('/book-a-package/{id}',[WebController::class,'book'])->name('frontend.booking.form')->middleware(["auth"]);
@@ -142,23 +144,38 @@ route::post('/book-a-package-submit/{id}',[WebController::class,'submit'])->name
 route::get('/delete-booking/{id}',[WebController::class,'deleteBooking'])->name('frontend.booking.delete');
 route::get('/search',[WebController::class,'search'])->name('search');
 
-//for LOGIN
+//for LOGIN USer
 route::get('/login',[LoginController::class,'login'])->name('login');
 Route::post('/dologin',[LoginController::class,'dologin'])->name('admin.dologin');
 route::get('/user/logout',[LoginController::class,'logout'])->name('user.logout');
 
+//for Admin Login
+//route::get('/admin-login',[LoginController::class,'adminlogin'])->name('admin.login');
+
+//for registration user
 route::get('/registration',[LoginController::class,'registration'])->name('user.registration');
 route::post('/do-registration',[LoginController::class,'store'])->name('user.do.registration');
 
+//User profile information
 Route::get('/profile',[WebController::class,'profile'])->name('user.profile');
+Route::get('/booking-cancel/{id}',[WebController::class,'status'])->name('booking.status');
 Route::get('/profile-view/{id}',[WebController::class,'bookingDetails'])->name('user.bookingDetails');
 Route::get('/profile-edit/{id}',[WebController::class,'edit'])->name('user.profile.edit');
 Route::put('/profile-update/{id}',[WebController::class,'updateProfile'])->name('profile.update');
 
+//Frontend Service
+Route::get('/book-a-service',[WebController::class,'bookservice'])->name('frontend.service');
+Route::get('/book-a-package',[WebController::class,'bookpackage'])->name('frontend.package');
+
+Route::get('/view-service/{id}',[WebController::class,'viewservice'])->name('frontend.service.view');
 
 
+//for Report
 route::get('/create-report',[ReportController::class,'report'])->name('report.create');
-route::post('/generated-report',[ReportController::class,'generateReport'])->name('report.generate');
+route::get('/generated-report',[ReportController::class,'generateReport'])->name('report.generate');
 
-
-route::get('/contact-us',[ReportController::class,'contact'])->name('contact.us');
+//Contact Us
+route::get('/contactus',[ContactController::class,'contactus'])->name('contactus');
+route::post('/contactus-message',[ContactController::class,'store'])->name('contactus.message');
+route::get('/message',[ContactController::class,'message'])->name('message');
+route::get('/message/delete/{id}',[ContactController::class,'delete'])->name('message.delete');

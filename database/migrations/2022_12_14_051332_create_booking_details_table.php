@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('booking_details', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('booking_id')->constrained('bookings');
-            $table->foreignId('package_id')->constrained('packages');
+            $table->foreignId('booking_id')->constrained('bookings')->restrictOnDelete();
+            $table->foreignId('package_id')->constrained('packages')->restrictOnDelete();
             $table->double('package_price');
             $table->timestamps();
         });

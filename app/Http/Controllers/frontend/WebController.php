@@ -17,37 +17,53 @@ class WebController extends Controller
 
         $packages = Package::all();
         return view('frontend.pages.home',compact("packages"));
-        // return "Hello";
+        
     }
     public function book($id){
         $package = Package::find($id);
+        
         $packages = Package::all();
         $services = Service::all();
         return view('frontend.pages.form',compact('package','packages','services'));
     }
-    public function submit(Request $request,$id){
-        // dd($request->all());
-        if(auth()->user()){
-            $package = Package::find($id);
-        $packages = Package::all();
 
+
+
+    public function submit(Request $request,$id){
+  
+        if(auth()->user()){
+      
+// dd($request->all());
+        $request->validate([
+            "from_date"=> "date|after_or_equal:now",
+            "to_date" => "date|after:from_date"
+        ]);
         $booking=Booking::create([
             'user_id'=>auth()->user()->id,
-            'package_id'=>$package->id,
-            "address"=>$request->address,
+            'package_id'=>$id,
+            'address'=>$request->address,
+            'guest'=>$request->guest,
+            'venue'=>$request->venue,
+            'food_item'=>$request->food_item,
             'booking_from'=>$request->from_date,
             'booking_to'=>$request->to_date
         ]);
-        foreach($request->multipleServices as $service){
-            // dd($service->id);
-            $serviceprice = Service::where('id',$service)->pluck('price');
-            // dd($serviceprice[0]);
-            BookingDetail::create([
-                'booking_id'=>$booking->id,
-                'package_id'=>$service,
-                'package_price'=>$serviceprice[0],
-            ]);
+
+
+        if($request->multipleServices){
+            foreach($request->multipleServices as $service){
+                // dd($service);
+                $serviceprice = Service::where('id',$service)->pluck('price');
+                // dd($serviceprice);
+                // dd($serviceprice[0]);
+                BookingDetail::create([
+                    'booking_id'=>$booking->id,
+                    'package_id'=>$id,
+                    'package_price'=>$serviceprice[0],
+                ]);
+            }
         }
+        
         }
         return to_route('home');
     }
@@ -97,15 +113,41 @@ class WebController extends Controller
     }
 
     public function search(Request $request){
-        $packages = Package::all();
-        $eventsearch=Event::where('event_name', 'like', '%'.$request->event.'%')->get();
+        $servicesearch=Package::where('name','like','%'.$request->event.'%')->get();
 
-        return view('frontend.pages.search', compact('eventsearch', 'packages'));
+        return view('frontend.pages.search', compact('servicesearch'));
     }
     public function bookingDetails($id){
         $booking = Booking::find($id);
         $bookingDetails = BookingDetail::where('booking_id',$booking->id)->get();
         return view('frontend.pages.auth.bookingDetails',compact('bookingDetails'));
+    }
+    public function bookservice(){
+        $servicebook= Service::all();
+        return view('frontend.pages.auth.service',compact('servicebook'));
+    }
+    public function bookpackage(){
+        $packages= Package::all();
+        return view('frontend.pages.auth.packagebook',compact('packages'));
+    }
+
+    public function viewservice($id){
+        $services=Service::find($id);
+        return view('frontend.pages.auth.viewService',compact('services'));
+    }
+
+    public function status($id){
+        $booking=Booking::find($id);
+        if($booking->status!='approved'){
+            $booking->update([
+                'status'=>'cancel'
+            ]);
+        }
+        else{
+            notify()->error('You can not cancel it now');
+            return redirect()->back();
+        }
+        return redirect()->back();
     }
 
 

@@ -669,7 +669,7 @@ h1, h2, h3, h4, h5, h6, figure {
   }
 }
 #fh5co-gallery-list li a {
-  min-height: 400px;
+  /* min-height: 400px; */
   padding: 2em;
   position: relative;
   width: 100%;

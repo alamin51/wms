@@ -27,7 +27,7 @@
       <th scope="row">{{$data->id}}</th>
       <td>{{$data->s_name}}</td>
       <td>
-        <img src="{{url('/upload/'.$data->image)}}" width="40" height="40" alt="Event picture">
+        <img src="{{url('/upload/'.$data->s_image)}}" width="40" height="40">
       </td>
       <td>{{$data->s_phone}}</td>
       <td>{{$data->s_address}}</td>
@@ -40,5 +40,7 @@
     @endforeach
   </tbody>
 </table>
+
+{{$stuffs->links()}}
 
 @endsection

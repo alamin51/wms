@@ -13,7 +13,9 @@ class StuffController extends Controller
         return view('backend.stuff.create');
     }
     public function table(){
-        $stuffs=Stuff::all();
+
+        $stuffs=Stuff::paginate(3);
+
         return view('backend.stuff.index',compact('stuffs'));
     }
 
@@ -38,38 +40,44 @@ class StuffController extends Controller
     }
     public function update(Request $request,$id){
         $stuff= Stuff::find($id);
+        $filename=$stuff->s_image;
+        if ($request->hasFile('s_image')){
+            $file=$request->file('s_image');
+            $filename=date('Ymdhis').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('/upload',$filename);
+        }
         $stuff->update([
          's_name'=>$request->s_name,
-        's_image'=>$request->s_image,
+        's_image'=>$filename,
         's_phone'=>$request->s_phone,
          's_address'=>$request->s_address,
             
         ]);
-        return redirect()->back();
+        notify()->success("Update Successful");
+        return redirect()->route('stuff.create.table');
     }
-    public function store(Request $request){
-        
-        // $request->validate([
-        //     's_name'=>'required',
-        //     's_image','required',
-        //     's_phone'=>'required',
-        //     's_address'=>'required'
-        // ]);
+     public function store(Request $request){
+        $request->validate([
+            's_name'=>'required',
+            's_image'=>'required',
+            's_phone'=>'required',
+            's_address'=>'required',
+             
+        ]);
       
-        
 
         $filename=null;
-        if ($request->hasFile('image')){
-            $file=$request->file('image');
+        if ($request->hasFile('s_image')){
+            $file=$request->file('s_image');
             $filename=date('Ymdhis').'.'.$file->getClientOriginalExtension();
             $file->storeAs('/upload',$filename);
         }
-
+// dd($filename);
         Stuff::create([
             's_name'=>$request->s_name,
-            's_image'=>$request->s_image,
+            's_image'=>$filename,
             's_phone'=>$request->s_phone,
-            's_address'=>$request->s_address
+            's_address'=>$request->s_address,
         ]);
         return redirect()->back();
     }

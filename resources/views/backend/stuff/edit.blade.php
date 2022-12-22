@@ -24,10 +24,10 @@
     <label for="s_phone">Stuff Phone</label>
     <input type="text" name="s_phone" class="form-control" id="s_phone" placeholder="Enter your phone"value="{{$stuff->s_phone}}" name="s_phone">
   </div> 
-
+  
   <div class="form-group">
     <label for="s_address">Stuff Address</label>
-    <input type="text" name="s_address" class="form-control" id="s_address" placeholder="Enter your address"value="{{$stuff->s_addrss}}" name="s_address">
+    <input type="text" name="s_address" class="form-control" id="s_address" placeholder="Enter your address"value="{{$stuff->s_address}}" name="s_address">
   </div> 
 
 

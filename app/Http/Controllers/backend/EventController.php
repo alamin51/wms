@@ -10,11 +10,11 @@ use Illuminate\Http\Request;
 class EventController extends Controller
 {
     public function create(){
-        $packages = Package::all();
-        return view('backend.event.create',compact("packages"));
+        $packages = Package::paginate(3);
+        return view('backend.event.create',compact('packages'));
     }
     public function table(){
-        $events=Event::all();
+        $events=Event::paginate(3);
         return view('backend.event.index',compact('events'));
     }
 

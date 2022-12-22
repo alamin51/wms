@@ -26,6 +26,7 @@ class ServiceController extends Controller
         return view('backend.create.update',compact('service'));
 
     }
+    
 
     public function delete($id){
         $service=Service::find($id)->delete();
@@ -48,16 +49,29 @@ class ServiceController extends Controller
         $request->validate([
             'service_name'=>'required',
             'description'=>'required',
-            'price'=>'required',
+            'price',
+            'image'=>'required',
              
         ]);
+
+        $filename=null;
+        if ($request->hasFile('image')){
+            $file=$request->file('image');
+            $filename=date('Ymdhis').'.'.$file->getClientOriginalExtension();
+            $file->storeAs('/upload',$filename);
+        }
 
         Service::create([
             'service_name'=>$request->service_name,
             'description'=>$request->description,
             'price'=>$request->price,
+            'image'=>$filename,
            
         ]);
         return redirect()->back();
+        
     }
+
+
+
 }

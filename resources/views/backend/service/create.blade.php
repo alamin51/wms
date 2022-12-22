@@ -24,6 +24,11 @@
   <input type="text" name="price" class="form-control" id="price" placeholder="Enter your price">
 </div> 
 
+<div class="form-group">
+  <label for="image">Image</label>
+  <input type="file" name="image" class="form-control" id="image" placeholder="No file choosen">
+</div> 
+
 
 
 

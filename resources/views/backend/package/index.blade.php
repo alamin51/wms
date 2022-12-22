@@ -4,7 +4,7 @@
 
 
 <h1>Package List</h1>
-<a class="btn btn-success" href="{{route('package.create')}}">Create package +</a>
+<a class="btn btn-primary" href="{{route('package.create')}}">Create package +</a>
 
 <table class="table">
   <thead class="thead-dark">
@@ -43,5 +43,6 @@
     
   </tbody>
 </table>
+{{$packages->links()}}
 
 @endsection

@@ -1,6 +1,10 @@
+
+
 @extends("backend.master")
 
 @section("content")
+
+<h1>Admin Dashboard</h1>
     <section class="mt-5">
         <div class="container">
             <div class="row">
@@ -15,7 +19,7 @@
                 <div class="col-md-4">
                 <div class="badge badge-success">
                         <div class="px-5 py-3">
-                            <h4>Accepted Booking</h4>
+                            <h4>Total Booking</h4>
                             <p class="text-danger font-weight-bold">{{$bookings->count()}}</p>
                         </div>
                     </div>
